@@ -16,4 +16,7 @@ This has been tested using:
 1)  Ubuntu 24.04.4 LTS.
 2)  GCC 13.3.0
 3)  Kingst LA2016
-4)  WDC65C134SXB and WDC65C256SXB 
+4)  WDC65C134SXB and WDC65C256SXB
+
+# Limitations
+Does not take in to account the setting of the X and M bits, it assumes that the access is always 8-bit.
