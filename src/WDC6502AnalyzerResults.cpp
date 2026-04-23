@@ -324,7 +324,7 @@ void WDC6502AnalyzerResults::GenerateBubbleText(U64 frame_index, Channel & /*cha
         GenerateOpcodeTxt(result_str, sizeof(result_str), (U32) frame.mData2, frame.mFlags);
     }
     else {
-        AnalyzerHelpers::GetNumberString( frame.mData2, display_base, 32, result_str, sizeof(result_str));
+        AnalyzerHelpers::GetNumberString( frame.mData2, display_base, 8, result_str, sizeof(result_str));
     }
 
     //snprintf(result_str, sizeof(result_str), "%s", number_str);
@@ -407,10 +407,8 @@ void WDC6502AnalyzerResults::GenerateOpcodeTxt(char* Text, size_t Text_Size, U32
     Opcode_value = (U8)( RawOpcodeData & 0xFF);
 
     //OpcodeText
-    //snprintf(OpcodeText, sizeof(OpcodeText), "%s", opcodes[Opcode_value].OpcodeText);
     AddFirstPartOpcode(OpcodeText, sizeof(OpcodeText), Opcode_value);
     AddLastPartOpcode(OpcodeEndText, sizeof(OpcodeEndText), Opcode_value);
-
 
     if ((Flags & TWO_BYTE_FLAG) != 0) {
         // One extra byte in opcode

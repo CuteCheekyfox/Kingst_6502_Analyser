@@ -243,8 +243,17 @@ void WDC6502Analyzer::ReadOpcode()
             OpcodeFlags = FOUR_BYTE_FLAG;      
         }
     }
-    //ok now record the value!
-    //note that we're not using the mData2 or mType fields for anything, so we won't bother to set them.
+    // Record the opcode data in a Frame
+    //
+    // If Valid opcode:
+    // mData2 = Opcode and opcode bytes 
+    // mFlags = Indicates no of bytes in Opcode
+    // mType  = Opcode_Read
+    // Else if invalid
+    // mData2 = Opcode byte 
+    // mFlags = Not used
+    // mType  = Not_Valid
+    
     Frame frame;
     frame.mStartingSampleInclusive = frame_starting_sample;
     frame.mEndingSampleInclusive = mPHI2->GetSampleNumber();
@@ -315,8 +324,11 @@ void WDC6502Analyzer::ReadDataAccess()
         type = CycleAnalyzerEnums::Data_Read;
     }
 
-    //ok now record the value!
-    //note that we're not using the mData2 or mType fields for anything, so we won't bother to set them.
+    // Record the data read/write in a Frame
+    //
+    // mData2 = Data bus byte 
+    // mFlags = Not Used
+    // mType  = Data_Write or Data_Read
     Frame frame;
     frame.mStartingSampleInclusive = data_starting_sample;
     frame.mEndingSampleInclusive = mPHI2->GetSampleNumber();
